@@ -1,4 +1,4 @@
-param ($subscriptionid, $selectedRg, $selectedVnet)
+param ($subscriptionid, $selectedRg, $selectedVnetRg, $selectedVnet)
 #New-MgRoleManagementDirectoryRoleAssignment
 
 #---------------Login to your Azure government cloud tenant -----------------------------------------
@@ -85,6 +85,6 @@ function CheckAndAddRoleAssignmentToServicePrincipal() {
     # Check if role exists, if not exist, add the role to our service principal in the target scope
     CheckAndAddRoleAssignmentToServicePrincipal -RoleName "Reader" -Scope "/subscriptions/$SubscriptionId" -ServicePrincipalId $ServicePrincipal.Id
     CheckAndAddRoleAssignmentToServicePrincipal -RoleName "Network contributor" -Scope "/subscriptions/$subscriptionid/resourcegroups/$selectedRg" -ServicePrincipalId $ServicePrincipal.Id
-    CheckAndAddRoleAssignmentToServicePrincipal -RoleName "Network contributor" -Scope "/subscriptions/$subscriptionid/resourcegroups/$selectedRg/providers/Microsoft.Network/virtualNetworks/$selectedvnet" -ServicePrincipalId $ServicePrincipal.Id
+    CheckAndAddRoleAssignmentToServicePrincipal -RoleName "Network contributor" -Scope "/subscriptions/$subscriptionid/resourcegroups/$selectedVnetRg/providers/Microsoft.Network/virtualNetworks/$selectedvnet" -ServicePrincipalId $ServicePrincipal.Id
 
     
